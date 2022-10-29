@@ -1,6 +1,7 @@
 from collections import OrderedDict
 
 
+from fizzbuzz.fizzbuzz_exceptions import NegativeIntegerException, NonIntegerException
 class FizzBuzzGenerator(object):
 
     def __init__(self, replacements: OrderedDict = None):
@@ -14,4 +15,10 @@ class FizzBuzzGenerator(object):
 
         :param replacements: OrderedDict of which numbers to replace with letters. Defaults to {3:'Fizz', 5:'Buzz'}.
         """
-        raise NotImplementedError
+        for k in replacements.keys():
+            if k != int(k):
+                raise NonIntegerException
+            if k < 1:
+                raise NegativeIntegerException
+        self._replacements = replacements
+        self._position = 0
