@@ -25,6 +25,9 @@ class FizzBuzzIterator(object):
         self._replacements = replacements
         self._position = 0
 
+    def __iter__(self):
+        return self
+
     def __next__(self):
         self._position += 1
         output = ''
