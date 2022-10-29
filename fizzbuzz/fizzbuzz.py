@@ -15,13 +15,12 @@ class FizzBuzzIterator(object):
 
         :param replacements: OrderedDict of which numbers to replace with letters. Defaults to {3:'Fizz', 5:'Buzz'}.
         """
+        if replacements is None:
+            replacements = OrderedDict([(3, 'Fizz'), (5, 'Buzz')])
         for k in replacements.keys():
             if k != int(k):
                 raise NonIntegerException
             if k < 1:
                 raise NegativeIntegerException
-        if replacements is None:
-            self._replacements = OrderedDict([(3, 'Fizz'), (5, 'Buzz')])
-        else:
-            self._replacements = replacements
+        self._replacements = replacements
         self._position = 0
