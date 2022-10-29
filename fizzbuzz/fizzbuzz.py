@@ -24,3 +24,15 @@ class FizzBuzzIterator(object):
                 raise NegativeIntegerException
         self._replacements = replacements
         self._position = 0
+
+    def __next__(self):
+        self._position += 1
+        output = ''
+        replaced_output = False
+        for k, v in self._replacements.items():
+            if self._position%k ==0:
+                output+=v
+                replaced_output = True
+        if not replaced_output:
+            output = str(self._position)
+        return output
