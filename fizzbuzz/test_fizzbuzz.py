@@ -33,12 +33,12 @@ class TestFizzBuzzGenerator(TestCase):
              '91', '92', 'Fizz', '94', 'Buzz', 'Fizz', '97', '98', 'Fizz', 'Buzz'
              ]
         fb = FizzBuzzIterator()
-        observed_terms = islice(fb, 0, 100)
+        observed_terms = list(islice(fb, 0, 100))
         assert expected_terms == observed_terms
 
     def test_empty_replacements(self):
         """Test that a FizzBuzzIterator with an empty replacements dict correctly generates the first 100 terms"""
         expected_terms = [str(i) for i in range(1, 101)]
         fb = FizzBuzzIterator(OrderedDict())
-        observed_terms = islice(fb, 0, 100)
+        observed_terms = list(islice(fb, 0, 100))
         assert expected_terms == observed_terms
