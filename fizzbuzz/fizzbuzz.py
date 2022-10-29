@@ -2,11 +2,11 @@ from collections import OrderedDict
 
 
 from fizzbuzz.fizzbuzz_exceptions import NegativeIntegerException, NonIntegerException
-class FizzBuzzGenerator(object):
+class FizzBuzzIterator(object):
 
     def __init__(self, replacements: OrderedDict = None):
         """
-        Construct a generator that will return FizzBuzz terms. Takes as input a dictionary of replacements with
+        Construct an iterator that will return FizzBuzz terms. Takes as input a dictionary of replacements with
         integers as keys and strings as values. Positive integers are generated, starting with 1. For each key in the
         dictionary of replacements, the value of that key is returned if the integer is a multiple of the key. If the
         integer is a multiple of multiple keys, the string is the relevant values concatenated in the order of the

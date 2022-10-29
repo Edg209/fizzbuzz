@@ -4,7 +4,7 @@ from unittest import TestCase
 
 import pytest
 
-from fizzbuzz.fizzbuzz import FizzBuzzGenerator
+from fizzbuzz.fizzbuzz import FizzBuzzIterator
 from fizzbuzz.fizzbuzz_exceptions import NegativeIntegerException, NonIntegerException
 
 
@@ -13,13 +13,13 @@ class TestFizzBuzzGenerator(TestCase):
         """Test that attempting to replace a negative integer raises the appropriate exception"""
         test_replacements = OrderedDict([(-1, 'Blah')])
         with pytest.raises(NegativeIntegerException):
-            fb = FizzBuzzGenerator(replacements=test_replacements)
+            fb = FizzBuzzIterator(replacements=test_replacements)
 
     def test_non_integer(self):
         """Test that attempting to replace a non integer raises the appropriate exception"""
         test_replacements = OrderedDict([(1.5, 'Blah')])
         with pytest.raises(NonIntegerException):
-            fb = FizzBuzzGenerator(replacements=test_replacements)
+            fb = FizzBuzzIterator(replacements=test_replacements)
 
     def test_default_replacements(self):
         """Test that the default replacements of {3:Fizz, 5:Buzz} correctly generates the first 100 terms"""
@@ -32,13 +32,13 @@ class TestFizzBuzzGenerator(TestCase):
              '76', '77', 'Fizz', '79', 'Buzz', 'Fizz', '82', '83', 'Fizz', 'Buzz', '86', 'Fizz', '88', '89', 'FizzBuzz',
              '91', '92', 'Fizz', '94', 'Buzz', 'Fizz', '97', '98', 'Fizz', 'Buzz'
              ]
-        fb = FizzBuzzGenerator()
+        fb = FizzBuzzIterator()
         observed_terms = islice(fb, 0, 100)
         assert expected_terms == observed_terms
 
     def test_empty_replacements(self):
-        """Test that a FizzBuzzGenerator with an empty replacements dict correctly generates the first 100 terms"""
+        """Test that a FizzBuzzIterator with an empty replacements dict correctly generates the first 100 terms"""
         expected_terms = [str(i) for i in range(1, 101)]
-        fb = FizzBuzzGenerator(OrderedDict())
+        fb = FizzBuzzIterator(OrderedDict())
         observed_terms = islice(fb, 0, 100)
         assert expected_terms == observed_terms
