@@ -20,5 +20,8 @@ class FizzBuzzGenerator(object):
                 raise NonIntegerException
             if k < 1:
                 raise NegativeIntegerException
-        self._replacements = replacements
+        if replacements is None:
+            self._replacements = OrderedDict([(3, 'Fizz'), (5, 'Buzz')])
+        else:
+            self._replacements = replacements
         self._position = 0
